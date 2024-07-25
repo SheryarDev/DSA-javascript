@@ -36,7 +36,7 @@ class BSTree {
       }
     } else {
       if (root.right === null) {
-        root.right === newNode;
+        root.right =newNode;
       } else {
         this.insertNode(root.right, newNode);
       }
@@ -90,13 +90,14 @@ class BSTree {
     queue.push(this.root);
 
     while (queue.length) {
+      // console.log("quueu",queue)
       let current = queue.shift();
 
       if (current.left) {
         queue.push(current.left);
       }
 
-      if (current.left) {
+      if (current.right) {
         queue.push(current.right);
       }
       console.log(current.value);
@@ -130,16 +131,16 @@ class BSTree {
         return null
     }
 
-    if(val<root.value){
+    if(value<root.value){
         root.left=this.deleteNode(root.left,value)
     }else if(value > root.value){
         root.right=this.deleteNode(root.right,value)
     }else{
-        if(!root.left && !root.right){
+        if(!root.left && !root.right){// if node to delete has no left and right node then return null
             return null;
-        }else if(!root.left){
+        }else if(!root.left){ // if node to delete has no left node then return right node
             return root.right;
-        }else if(!root.right){
+        }else if(!root.right){ // if node to delete has no left node then return left node
             return root.left;
         }
 
@@ -149,3 +150,22 @@ class BSTree {
     return root
   }
 }
+
+const tree=new BSTree()
+tree.makeTree(20)
+tree.makeTree(10)
+tree.makeTree(30)
+tree.makeTree(5)
+tree.makeTree(11)
+tree.makeTree(25)
+tree.makeTree(4)
+
+tree.deleteNode(tree.root,25)
+console.log("PreOrder")
+tree.preOrder(tree.root)
+console.log("PostOrder")
+tree.PostOrder(tree.root)
+console.log("InOrder")
+tree.IneOrder(tree.root)
+console.log("bredth first searc")
+tree.bfsTraversal()
