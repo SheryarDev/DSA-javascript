@@ -2,8 +2,8 @@ class Queue {
     constructor(MAXSIZE = 5) {
       this.MAXSIZE = MAXSIZE;
       this.queue = new Array(MAXSIZE);
-      this.front = -1;
-      this.rear = -1;
+      this.front = -1; // this pointer is incremented when  element is removed from queue
+      this.rear = -1; // this pointer is incremented when new element is added in queue
     }
   
     isEmpty() {
@@ -15,7 +15,7 @@ class Queue {
     }
   
     isFull() {
-      if ((this.rear + 1) % this.MAXSIZE === this.front) {
+      if ((this.rear + 1)  === this.MAXSIZE) {
         console.log("Queue is full");
         return true;
       }
@@ -35,7 +35,7 @@ class Queue {
           // First element to be enqueued
           this.front = 0;
         }
-        this.rear = (this.rear + 1) % this.MAXSIZE;
+        this.rear = this.rear + 1
         this.queue[this.rear] = val;
         console.log("Enqueued:", val);
       }
@@ -49,7 +49,7 @@ class Queue {
           // Queue has only one element, so reset the queue
           this.front = this.rear = -1;
         } else {
-          this.front = (this.front + 1) % this.MAXSIZE;
+          this.front = this.front + 1
         }
         return value;
       }
