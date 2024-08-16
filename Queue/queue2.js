@@ -1,3 +1,24 @@
+//Operation on queue
+// Enqueue: Add an element to the end of the queue
+// Dequeue: Remove an element from the front of the queue
+// IsEmpty: Check if the queue is empty
+// IsFull: Check if the queue is full
+// Peek: Get the value of the front of the queue without removing it
+
+// Working of Queue
+// Queue operations work as follows:
+
+// two pointers FRONT and REAR
+// FRONT track the first element of the queue
+// REAR track the last element of the queue
+// initially, set value of FRONT and REAR to -1
+
+//how queue works
+
+/*
+Queue Works on FIFO Princple first in first out
+let suppost we enter 5 element in array in sequence, [1,2,3,4,5], so when we remove elements first 1 will remove then 2,3,4,5. rear pointer increase when a element is insert in queue, and front pointer increase when element is removed from queue
+ */
 class Queue {
     constructor(MAXSIZE = 5) {
       this.MAXSIZE = MAXSIZE;
@@ -7,7 +28,7 @@ class Queue {
     }
   
     isEmpty() {
-      if (this.front === -1) {
+      if (this.front === -1 && this.rear === -1) {
         console.log("Queue is empty");
         return true;
       }
@@ -15,12 +36,14 @@ class Queue {
     }
   
     isFull() {
-      if ((this.rear + 1)  === this.MAXSIZE) {
-        console.log("Queue is full");
+      //5 % 5 === 0
+      if ((this.rear + 1) % this.MAXSIZE === this.front) {
+        console.log("CircularQueue is full");
         return true;
       }
       return false;
     }
+  
   
     peek() {
       if (!this.isEmpty()) {
