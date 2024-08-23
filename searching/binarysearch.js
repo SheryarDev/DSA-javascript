@@ -32,28 +32,27 @@ function binaryIterativeSearch(data, val) {
   return position
 }
 
+console.log("binaryIterativeSearch", binaryIterativeSearch(data, 29));
+
 function binaryRecursiveSearch(data, val) {
   let start = 0;
   let end = data.length - 1;
   let position = undefined;
   function binarySearch(data, start, end) {
-    while (start <= end) {
-      let mid = Math.floor((start + end) / 2);
-      if (data[mid] === val) {
-        position = mid;
-        break;
-      } else if (data[mid] < val) {
-        binarySearch(data, mid + 1, end);
-      } else {
-        binarySearch(data, start, mid - 1);
-      }
+    let mid = Math.floor((start + end) / 2);
+    if (data[mid] === val) {
+      position = mid;
+      return position;
+    } else if (data[mid] < val) {
+      binarySearch(data, mid + 1, end);
+    } else {
+      binarySearch(data, start, mid - 1);
     }
+    return position;
   }
 
-  binarySearch(data, start, end);
-  return position;
+  return binarySearch(data, start, end);
+  
 }
 
-
-
-console.log("bineary",binaryRecursiveSearch(data, 23))
+console.log("bineary recursive search", binaryRecursiveSearch(data, 29));
