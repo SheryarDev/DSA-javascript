@@ -44,8 +44,10 @@ function binaryRecursiveSearch(data, val) {
       position = mid;
       return position;
     } else if (data[mid] < val) {
+      //if target val is greater than mid then search in right half of array by increasing the pointer toward right side from mid
       binarySearch(data, mid + 1, end);
     } else {
+      //if target val is less than mid then search in right left of array by decreasing the pointer towards the left side of array from mid
       binarySearch(data, start, mid - 1);
     }
     return position;
